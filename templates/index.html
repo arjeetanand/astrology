@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astrology App</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Astrology Insights</h1>
+      <form method="POST" class="astrology-form">
+        <div class="form-group">
+          <label for="birth_date">Birth Date:</label>
+          <input type="date" id="birth_date" name="birth_date" required />
+        </div>
+        <div class="form-group">
+          <label for="birth_time">Birth Time:</label>
+          <input type="time" id="birth_time" name="birth_time" required />
+        </div>
+        <div class="form-group">
+          <label for="birth_place">Birth Place:</label>
+          <input
+            type="text"
+            id="birth_place"
+            name="birth_place"
+            placeholder="Enter your place of birth"
+          />
+        </div>
+        <button type="submit" class="btn">Get Astrology Insights</button>
+      </form>
+    </div>
+  </body>
+</html>

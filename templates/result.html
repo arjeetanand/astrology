@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astrology Insights</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Your Astrology Insights</h1>
+
+      <section class="section">
+        <h2>Planetary Positions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Planet</th>
+              <th>Longitude (°)</th>
+              <th>Zodiac Sign</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for planet, position in positions.items() %}
+            <tr>
+              <td>{{ planet }}</td>
+              <td>{{ position }}</td>
+              <td>{{ zodiac_positions[planet] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>Personality Insights</h2>
+        <ul>
+          {% for planet, trait in personality_insights.items() %}
+          <li><b>{{ planet }}</b>: {{ trait }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Life Event Predictions</h2>
+        <p>{{ life_event_predictions }}</p>
+      </section>
+
+      <section class="section">
+        <h2>Past Analysis</h2>
+        <p>{{ past_insights }}</p>
+      </section>
+
+      <div class="button-container">
+        <a href="/" class="button">Go Back</a>
+      </div>
+    </div>
+  </body>
+</html>

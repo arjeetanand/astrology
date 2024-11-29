@@ -1,0 +1,8 @@
+flask
+pyswisseph
+requests
+astropy
+streamlit
+numpy
+pandas
+matplotlib
