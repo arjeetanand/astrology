@@ -77,6 +77,37 @@ def get_zodiac_sign(longitude):
     return zodiac_signs[index]
 
 
+def calculate_ascendant(birth_date, birth_time, birth_place_lat, birth_place_lon):
+    """
+    Calculate the Ascendant (Lagna) based on birth details.
+    """
+    # Ensure time has seconds
+    if len(birth_time.split(":")) == 2:
+        birth_time += ":00"
+
+    # Convert strings to datetime
+    birth_datetime = datetime.strptime(
+        f"{birth_date} {birth_time}", "%Y-%m-%d %H:%M:%S"
+    )
+
+    # Calculate Julian day
+    jd = swe.julday(
+        birth_datetime.year,
+        birth_datetime.month,
+        birth_datetime.day,
+        birth_datetime.hour + birth_datetime.minute / 60,
+    )
+
+    # Calculate sidereal time
+    sidereal_time = swe.sidtime(jd)
+
+    # Calculate Ascendant using geographic coordinates of the birth place
+    asc, ascmc = swe.houses(jd, birth_place_lat, birth_place_lon, b"A")
+    ascendant_sign = get_zodiac_sign(asc[0])
+
+    return ascendant_sign
+
+
 def cohere_generate_personality_insights(zodiac_positions):
     """
     Use Cohere to generate personality insights based on zodiac positions.
@@ -115,6 +146,24 @@ def cohere_generate_life_event_predictions(positions):
         temperature=0.7,
     )
     return response.generations[0].text.strip()
+
+
+def house_analysis(positions):
+    """
+    Analyze planetary positions in each of the 12 houses.
+    """
+    # Placeholder logic for calculating which planets are in which house.
+    # A real implementation would require computing the house cusps based on the Ascendant.
+    house_positions = {}
+    for i in range(1, 13):
+        house_positions[f"House {i}"] = []
+
+    # Assuming planets are evenly distributed for this example.
+    for index, (planet, pos) in enumerate(positions.items()):
+        house_number = (index % 12) + 1
+        house_positions[f"House {house_number}"].append(planet)
+
+    return house_positions
 
 
 def cohere_analyze_past_events(past_positions, natal_positions):

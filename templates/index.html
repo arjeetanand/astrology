@@ -19,12 +19,23 @@
           <input type="time" id="birth_time" name="birth_time" required />
         </div>
         <div class="form-group">
-          <label for="birth_place">Birth Place:</label>
+          <label for="birth_place_lat">Birth Place Latitude:</label>
           <input
             type="text"
-            id="birth_place"
-            name="birth_place"
-            placeholder="Enter your place of birth"
+            id="birth_place_lat"
+            name="birth_place_lat"
+            placeholder="Enter latitude of birth place"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="birth_place_lon">Birth Place Longitude:</label>
+          <input
+            type="text"
+            id="birth_place_lon"
+            name="birth_place_lon"
+            placeholder="Enter longitude of birth place"
+            required
           />
         </div>
         <button type="submit" class="btn">Get Astrology Insights</button>
